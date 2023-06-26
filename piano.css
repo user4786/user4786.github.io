@@ -1,0 +1,370 @@
+/*
+  Styles the piano keys and the sidebars. Displays music notes in a row.
+*/
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  color: #571d47;
+  font-size: 1.5em;
+}
+
+main {
+  position: absolute;
+  left: 15%;
+  width: 75%;
+  padding-left: 30px;
+}
+
+ul {
+  padding-left: 10px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10%;
+}
+
+button {
+  color: #571d47;
+  background-color: #ffffff;
+  font-size: 15px;
+}
+
+.out {
+  opacity: 90%;
+}
+
+.container {
+  height: 20px;
+  width: 30vw;
+  background-color: #ccc;
+  position: relative;
+  border-radius: 5px;
+}
+
+.progress-bar {
+  position: absolute;
+  height: 100%;
+  background-color: #702f5e;
+  border-radius: 5px;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav-links li a {
+  transition: all 0.3s ease 0s;
+  font-size: 25px;
+  padding: 10px;
+}
+
+.nav-links li a:not(.current-page) {
+  color: #ffffffcc;
+  font-weight: bold;
+}
+
+.nav-links li a:hover {
+  transition: all 0.3s ease 0s;
+  background-color: #421234;
+}
+
+.nav-links li, a, button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+input[type="radio"]:checked {
+  accent-color: #702f5e;
+}
+
+#settings, #sight-reading-selection-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  max-width: 10%;
+  position: fixed;
+  padding: 0px 30px;
+  background-color: #dca3ccb4;
+}
+
+#ear-training-prompts {
+  padding: 20px;
+  margin: 10px;
+}
+
+#play-sound-btn {
+  background: #702f5e;
+  color: #fff;
+  font-size: 50px;
+  width: 90px;
+  height: 90px;
+  text-align: center;
+  margin: auto;
+  border-radius: 50%;
+}
+
+#play-sound-btn:hover {
+  background: #a53f88;
+  color: #fffffff3;
+}
+
+#play-sound-btn:active {
+  width: 85px;
+  height: 85px;
+}
+
+#play-sound-btn i {
+  line-height: 90px;
+  margin-left: 9px;
+}
+
+#practice-question-section {
+  margin: 20px;
+}
+
+#next-btn {
+  width: 50px;
+}
+
+#progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#practice-view {
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#quiz-view {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#quiz-image, #learn-image {
+  display: flex;
+  padding-right: 6vw;
+  padding-bottom: 20px;
+}
+
+#treble-button-group button, #bass-button-group button, #all {
+  width: 60%;
+}
+
+#question-section, #learn-text-image-section, #practice-question-section {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: space-evenly;
+}
+
+#practice-stats {
+  align-self: flex-start;
+}
+
+#correct-view {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding-left: 30px;
+}
+
+.current-page {
+  color: #fff;
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+.current-choice, button:hover {
+  background-color: #ffcae1;
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.keyboard-input {
+  width: 100%;
+  border-radius: 10px;
+  padding: 15px 15px;
+  background: #141414;
+}
+
+.checkmark {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 20%;
+}
+
+.piano-keys {
+  display: flex;
+  margin-top: 10px;
+}
+
+.piano-keys .key {
+  list-style: none;
+  color: #a2a2a2;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.gray-out {
+  background: linear-gradient(#dbdbdb 96%, #cbcbcb 4%);
+}
+
+.piano-keys .white:not(.gray-out)  {
+  background: linear-gradient(#fff 96%, #eee 4%);
+}
+
+.piano-keys .white {
+  width: 50px;
+  height: 210px;
+  border-radius: 8px;
+  border: 1px solid #000;
+}
+
+.piano-keys .white.wrong {
+  box-shadow: inset -5px 5px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #e7a6a6 0%, #eb5a5a 100%);
+}
+
+.piano-keys .white.correct {
+  box-shadow: inset -5px 5px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #bbf0d1 0%, #8ff5b9 100%);
+}
+
+.piano-keys .black {
+  width: 40px;
+  height: 130px;
+  z-index: 2;
+  margin: 0 -22px 0 -22px;
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(#333, #000);
+}
+
+.piano-keys .black:active {
+  box-shadow: inset -5px 5px 10px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom, #3b0707 0%, #7d1a1a 100%);
+}
+
+.piano-keys span {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.13rem;
+}
+
+.keys-checkbox input {
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 30px;
+  appearance: none;
+  background: #702f5e;
+  position: relative;
+}
+
+.keys-checkbox input::before {
+  content: "";
+  position: absolute;
+  background:  #cc8bb9;
+  width: 20px;
+  height: 20px;
+  border-radius: inherit;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.keys-checkbox input:checked::before {
+  left: 35px;
+  background: #fff;
+}
+
+body > header {
+  background-color: #8d3073;
+  position: sticky;
+  top: 0;
+  height: 8vh;
+  display: flex;
+  padding-left: 20px;
+}
+
+#c4 span {
+  font-weight: bolder;
+  color: black;
+}
+
+main, .button {
+  font-family: 'Roboto', sans-serif;
+}
+
+#quiz-image div {
+  position: relative;
+  display: inline;
+}
+
+#treble-button-group, #bass-button-group {
+  display: grid;
+}
+
+#quiz-view .note-image, #learn-image .note-image{
+  height: 40vh;
+}
+
+#practice-view .note-image {
+  height: 33vh;
+}
+
+#correct-view img {
+  height: 15vh;
+  width: 15vh;
+  padding-right: 20px;
+}
+
+#learn-text-section p {
+  padding: 10px;
+}
+
+#learn-text-section button {
+  margin: 10px;
+}
+
+#correct-view p, #learn-text-section p {
+  font-size: large;
+}
+
+#ear-training-prompts > section {
+  display: flex;
+  align-items: center;
+}
+
+.keys-checkbox h1 {
+  font-size: 1.2em;
+}

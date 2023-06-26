@@ -1,0 +1,132 @@
+<!--
+  This page has a music note quiz where a music note is displayed and the
+  user must play the corresponding key on the page's keyboard.
+-->
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Sight Reading Quiz</title>
+    <link rel='stylesheet' href='piano.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='quiz.js'></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="piano.html">Learn </a></li>
+          <li><a href="practice.html">Practice </a></li>
+          <li><a href="quiz.html" class="current-page">Quiz </a></li>
+          <li><a href="listening.html">Ear Training </a></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="settings">
+      <h1>Treble</h1>
+      <section id="treble-button-group">
+        <button type="button" id="option4" class="treble-option">C6-F6</button>
+        <button type="button" id="option3" class="treble-option">C5-C6</button>
+        <button type="button" id="option2" class="treble-option">C4-C5</button>
+        <button type="button" id="option1" class="treble-option">E3-C4</button>
+      </section>
+      <h1>Bass</h1>
+      <section id="bass-button-group">
+        <button type="button" id="option8">C4-A4</button>
+        <button type="button" id="option7">C3-C4</button>
+        <button type="button" id="option6">C2-C3</button>
+        <button type="button" id="option5">G1-C2</button>
+      </section>
+      <h1>All notes</h1>
+      <button type="button" id="all" class="current-choice">All</button>
+      <div class="column keys-checkbox">
+        <h1>Show keys</h1>
+        <input type="checkbox" checked>
+      </div>
+    </section>
+    <main>
+      <section id="error-message" class="hidden">
+        <p>Oh no, something went wrong!</p>
+      </section>
+      <section id="quiz-view" class="hidden">
+        <section id="question-section">
+          <section id="quiz-image" class="hidden">
+            <!-- To be populated by javascript-->
+          </section>
+          <section id="correct-view">
+            <img class="hidden" src="img/checkmark.png" alt="green checkmark">
+            <section>
+              <p class="hidden">Attempts: <span id="quiz-attempts">0</span>.</p>
+              <p class="hidden">Next question in <span id="countdown">5</span> <span id="word-seconds">seconds.</span></p>
+              <button id="next-btn" class="hidden">Next</button>
+            </section>
+          </section>
+        </section>
+        <div class="keyboard-input">
+          <!--keyboard from https://www.youtube.com/watch?v=Mv1ZYpo8q4g-->
+          <ul class="piano-keys">
+            <li id="g1" class="key white bass hidden"><span>g1</span></li>
+            <li id="ab1" class="key black bass hidden"><span>g#</span></li>
+            <li id="a1" class="key white bass hidden"><span>a1</span></li>
+            <li id="bb1" class="key black bass hidden"><span>a#</span></li>
+            <li id="b1" class="key white bass hidden"><span>b1</span></li>
+            <li id="c2" class="key white bass hidden"><span>c2</span></li>
+            <li id="db2" class="key black bass hidden"><span>c#</span></li>
+            <li id="d2" class="key white bass hidden"><span>d2</span></li>
+            <li id="eb2" class="key black bass hidden"><span>d#</span></li>
+            <li id="e2" class="key white bass hidden"><span>e2</span></li>
+            <li id="f2" class="key white bass hidden"><span>f2</span></li>
+            <li id="gb2" class="key black bass hidden"><span>f#</span></li>
+            <li id="g2" class="key white bass hidden"><span>g2</span></li>
+            <li id="ab2" class="key black bass hidden"><span>g#</span></li>
+            <li id="a2" class="key white bass hidden"><span>a2</span></li>
+            <li id="bb2" class="key black bass hidden"><span>a#</span></li>
+            <li id="b2" class="key white bass hidden"><span>b2</span></li>
+            <li id="c3" class="key white bass hidden"><span>c3</span></li>
+            <li id="db3" class="key black bass hidden"><span>c#</span></li>
+            <li id="d3" class="key white bass hidden"><span>d3</span></li>
+            <li id="eb3" class="key black bass hidden"><span>d#</span></li>
+            <li id="e3" class="key white"><span>e3</span></li>
+            <li id="f3" class="key white"><span>f3</span></li>
+            <li id="gb3" class="key black"><span>f#</span></li>
+            <li id="g3" class="key white"><span>g3</span></li>
+            <li id="ab3" class="key black"><span>g#</span></li>
+            <li id="a3" class="key white"><span>a3</span></li>
+            <li id="bb3" class="key black"><span>a#</span></li>
+            <li id="b3" class="key white"><span>b3</span></li>
+            <li id="c4" class="key white"><span>c4</span></li>
+            <li id="db4" class="key black"><span>c#</span></li>
+            <li id="d4" class="key white"><span>d4</span></li>
+            <li id="eb4" class="key black"><span>d#</span></li>
+            <li id="e4" class="key white"><span>e4</span></li>
+            <li id="f4" class="key white"><span>f4</span></li>
+            <li id="gb4" class="key black"><span>f#</span></li>
+            <li id="g4" class="key white"><span>g4</span></li>
+            <li id="ab4" class="key black"><span>g#</span></li>
+            <li id="a4" class="key white"><span>a4</span></li>
+            <li id="bb4" class="key black treble"><span>a#</span></li>
+            <li id="b4" class="key white treble"><span>b4</span></li>
+            <li id="c5" class="key white treble"><span>c5</span></li>
+            <li id="db5" class="key black treble"><span>c#</span></li>
+            <li id="d5" class="key white treble"><span>d5</span></li>
+            <li id="eb5" class="key black treble"><span>d#</span></li>
+            <li id="e5" class="key white treble"><span>e5</span></li>
+            <li id="f5" class="key white treble"><span>f5</span></li>
+            <li id="gb5" class="key black treble"><span>f#</span></li>
+            <li id="g5" class="key white treble"><span>g5</span></li>
+            <li id="ab5" class="key black treble"><span>g#</span></li>
+            <li id="a5" class="key white treble"><span>a5</span></li>
+            <li id="bb5" class="key black treble"><span>a#</span></li>
+            <li id="b5" class="key white treble"><span>b5</span></li>
+            <li id="c6" class="key white treble"><span>c6</span></li>
+            <li id="db6" class="key black treble"><span>c#</span></li>
+            <li id="d6" class="key white treble"><span>d6</span></li>
+            <li id="eb6" class="key black treble"><span>d#</span></li>
+            <li id="e6" class="key white treble"><span>e6</span></li>
+            <li id="f6" class="key white treble"><span>f6</span></li>
+          </ul>
+        </div>
+    </main>
+  </body>
+</html>
