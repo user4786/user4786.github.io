@@ -62,6 +62,7 @@
   /** Creates a line of music notes and displays it on the webpage. */
   async function createMusicSheet() {
     qs(".keyboard-input").classList.add("hidden");
+    id("loading").classList.remove("hidden");
     let clefImage = gen("img");
     clefImage.src = "img/" + currentClef + "-clef-staff.png";
     clefImage.alt = currentClef;
