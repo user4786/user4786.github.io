@@ -50,7 +50,6 @@
     id("quiz-image").classList.add("hidden");
     id("quiz-image").innerHTML = "";
     id("practice-view").classList.add("hidden");
-    qs(".keyboard-input").classList.remove("hidden");
     id("practice-stats").classList.add("hidden");
     numWrong = 0;
     // id("sight-reading-selection-view").classList.add("hidden");
@@ -62,6 +61,7 @@
 
   /** Creates a line of music notes and displays it on the webpage. */
   async function createMusicSheet() {
+    qs(".keyboard-input").classList.add("hidden");
     let clefImage = gen("img");
     clefImage.src = "img/" + currentClef + "-clef-staff.png";
     clefImage.alt = currentClef;
@@ -80,6 +80,7 @@
     unhideNoteImages();
     id("quiz-image").classList.remove("hidden");
     id("practice-view").classList.remove("hidden");
+    qs(".keyboard-input").classList.remove("hidden");
     startTime = new Date();
   }
 
@@ -99,7 +100,7 @@
   }
 
   function unhideNoteImages() {
-    let images = qsa("#quiz-image img");
+    let images = qsa("#quiz-image .note-image");
     for (let i = 0; i < images.length; i++) {
       images[i].classList.remove("hidden");
     }
