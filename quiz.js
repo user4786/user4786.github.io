@@ -135,6 +135,9 @@
       .then(function(resp) {
         createQuestion(resp, clef);
       })
+      .then(() => {
+        id("loading").classList.add("hidden");
+      })
       .then(unhideNoteImages)
       .catch(handleError);
   }
@@ -153,6 +156,9 @@
       .then(resp => resp.json())
       .then(function(resp) {
         createQuestion(resp[0], currentClef);
+      })
+      .then(() => {
+        id("loading").classList.add("hidden");
       })
       .then(unhideNoteImages)
       .catch(handleError);
