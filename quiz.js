@@ -8,7 +8,6 @@
 "use strict";
 (function() {
   window.addEventListener("load", init);
-  const BASE_URL = "https://sight-reading-api.onrender.com/";
   let option1 = ["e3", "f3", "g3", "a3", "b3", "c4"];
   let option2 = ["c4", "d4", "e4", "f4", "g4", "a4", "b4", "c5"];
   let option3 = ["c5", "d5", "e5", "f5", "g5", "a5", "b5", "c6"];
@@ -130,23 +129,32 @@
    * @param {String} clef - The clef of the note
    */
   function getRandomMusicNote(clef) {
-    fetch(BASE_URL + "piano/random")
+    fetch("piano/random")
       .then(statusCheck)
       .then(resp => resp.json())
       .then(function(resp) {
         createQuestion(resp, clef);
       })
+      .then(unhideNoteImages)
       .catch(handleError);
+  }
+
+  function unhideNoteImages() {
+    let images = qsa("#quiz-image .hidden");
+    for (let i = 0; i < images.length; i++) {
+      images[i].classList.remove("hidden");
+    }
   }
 
   /** Gets a specific music note and uses it to create a question. */
   function getSpecificNote() {
-    fetch(BASE_URL + "piano/" + currentClef + "/" + currentNote)
+    fetch("piano/" + currentClef + "/" + currentNote)
       .then(statusCheck)
       .then(resp => resp.json())
       .then(function(resp) {
         createQuestion(resp[0], currentClef);
       })
+      .then(unhideNoteImages)
       .catch(handleError);
   }
 
@@ -172,9 +180,10 @@
     noteImage.alt = currentNote;
     noteImage.classList.add("note-image");
     let quizImage = id("quiz-image")
+    clefImage.classList.add("hidden");
+    noteImage.classList.add("hidden");
     quizImage.appendChild(clefImage);
     quizImage.appendChild(noteImage);
-    quizImage.classList.remove("hidden");
   }
 
    /**
@@ -303,8 +312,9 @@
   }
 
   /** Displays an error message on the webpage. */
-  function handleError() {
+  function handleError(error) {
     id("error-message").classList.remove("hidden");
+    console.log(error);
   }
 
   /**
