@@ -8,6 +8,7 @@
 "use strict";
 (function() {
   window.addEventListener("load", init);
+  const BASE_URL = "https://sight-reading-api.onrender.com/";
   let option1 = ["e3", "f3", "g3", "a3", "b3", "c4"];
   let option2 = ["c4", "d4", "e4", "f4", "g4", "a4", "b4", "c5"];
   let option3 = ["c5", "d5", "e5", "f5", "g5", "a5", "b5", "c6"];
@@ -129,7 +130,7 @@
    * @param {String} clef - The clef of the note
    */
   function getRandomMusicNote(clef) {
-    fetch("piano/random")
+    fetch(BASE_URL + "piano/random")
       .then(statusCheck)
       .then(resp => resp.json())
       .then(function(resp) {
@@ -151,7 +152,7 @@
 
   /** Gets a specific music note and uses it to create a question. */
   function getSpecificNote() {
-    fetch("piano/" + currentClef + "/" + currentNote)
+    fetch(BASE_URL + "piano/" + currentClef + "/" + currentNote)
       .then(statusCheck)
       .then(resp => resp.json())
       .then(function(resp) {
