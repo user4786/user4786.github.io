@@ -66,7 +66,7 @@
     clefImage.src = "img/" + currentClef + "-clef-staff.png";
     clefImage.alt = currentClef;
     clefImage.classList.add("note-image");
-    clefImage.classList.add("colored-background");
+    clefImage.classList.add("hidden");
     id("quiz-image").appendChild(clefImage);
     for (let i = 0; i < numNotes; i++) {
       try {
@@ -75,6 +75,9 @@
         handleError();
       }
     }
+    id("loading").classList.add("hidden");
+    clefImage.classList.remove("hidden");
+    unhideNoteImages();
     id("quiz-image").classList.remove("hidden");
     id("practice-view").classList.remove("hidden");
     startTime = new Date();
@@ -92,6 +95,13 @@
       addNoteToScreen(responseJson, clef);
     } catch {
       handleError();
+    }
+  }
+
+  function unhideNoteImages() {
+    let images = qsa("#quiz-image div");
+    for (let i = 0; i < images.length; i++) {
+      images[i].classList.remove("hidden");
     }
   }
 
@@ -113,6 +123,7 @@
     checkmark.classList.add("checkmark");
     checkmark.classList.add("hidden");
     let noteDiv = gen("div");
+    noteDiv.classList.add("hidden");
     noteDiv.appendChild(noteImage);
     noteDiv.appendChild(checkmark);
     let quizImage = id("quiz-image")
