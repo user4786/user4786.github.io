@@ -139,16 +139,16 @@
       .then(() => {
         id("loading").classList.add("hidden");
       })
-      .then(unhideNoteImages)
+      // .then(unhideNoteImages)
       .catch(handleError);
   }
 
-  function unhideNoteImages() {
-    let images = qsa("#quiz-image .hidden");
-    for (let i = 0; i < images.length; i++) {
-      images[i].classList.remove("hidden");
-    }
-  }
+  // function unhideNoteImages() {
+  //   let images = qsa("#quiz-image .hidden");
+  //   for (let i = 0; i < images.length; i++) {
+  //     images[i].classList.remove("hidden");
+  //   }
+  // }
 
   /** Gets a specific music note and uses it to create a question. */
   function getSpecificNote() {
@@ -161,7 +161,7 @@
       .then(() => {
         id("loading").classList.add("hidden");
       })
-      .then(unhideNoteImages)
+      // .then(unhideNoteImages)
       .catch(handleError);
   }
 
@@ -178,17 +178,25 @@
     if (chosenOption == "all") {
       currentNote = noteData[clef];
     }
-    let clefImage = gen("img");
+    let existingImages = qsa(".note-image");
+    let clefImage;
+    let noteImage;
+    if (existingImages[0] != null) {
+      clefImage = existingImages[0];
+      noteImage = existingImages[1];
+    } else {
+      clefImage = gen("img");
+      noteImage = gen("img");
+    }
+    // let clefImage = gen("img");
     clefImage.src = "img/" + clef + "-clef-staff.png";
     clefImage.alt = clef;
     clefImage.classList.add("note-image");
-    let noteImage = gen("img");
+    // let noteImage = gen("img");
     noteImage.src = "img/" + noteData.filename;
     noteImage.alt = currentNote;
     noteImage.classList.add("note-image");
     let quizImage = id("quiz-image")
-    clefImage.classList.add("hidden");
-    noteImage.classList.add("hidden");
     quizImage.appendChild(clefImage);
     quizImage.appendChild(noteImage);
   }

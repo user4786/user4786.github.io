@@ -99,7 +99,7 @@
   }
 
   function unhideNoteImages() {
-    let images = qsa("#quiz-image div");
+    let images = qsa("#quiz-image img");
     for (let i = 0; i < images.length; i++) {
       images[i].classList.remove("hidden");
     }
@@ -123,7 +123,7 @@
     checkmark.classList.add("checkmark");
     checkmark.classList.add("hidden");
     let noteDiv = gen("div");
-    noteDiv.classList.add("hidden");
+    noteImage.classList.add("hidden");
     noteDiv.appendChild(noteImage);
     noteDiv.appendChild(checkmark);
     let quizImage = id("quiz-image")
