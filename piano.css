@@ -369,6 +369,11 @@ main, .button {
   font-size: 1.2em;
 }
 
+#loading {
+  padding: 10px;
+  margin: 10px;
+}
+
 .loader {
   display: inline-block;
   width: 30px;
